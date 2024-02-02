@@ -8,7 +8,12 @@ jobs:
       - name: Empty files
         run: |
           ls -a
-      - uses: actions/checkout@v4
+      #   - uses: actions/checkout@v4
       - name: Show files
         run: |
-          ls -a
+          git init
+          git remote add origin https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}github.com/$GITHUB_REPOSITORY.git
+          git fetch origin
+          git checkout main
+      - name: List files
+        run: ls -a
